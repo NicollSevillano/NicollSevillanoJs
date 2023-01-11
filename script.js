@@ -33,7 +33,7 @@ let valor = 0;
         for(let i = 1; i < 1000; i++){
             if(valor < 1000){
                 let num = valor
-                console.log(`Hay un total de ${num} facturas mayores a $1000`);
+                console.log(`Hay un total de ${i} facturas mayores a $1000`);
             }
         }*/
 
