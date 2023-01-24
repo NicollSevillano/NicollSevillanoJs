@@ -1,40 +1,53 @@
-
-ingresar = Number(prompt(`¿Cuantas facturas desea ingresar?`));
-
-let total = 0;
-let promedio = 0;
-let facturas = 0;
 const salir = "salir";
-let valor = 0;
+
+class Facturas{
+    constructor(nombre, valor){
+        this.nombre = nombre;
+        this.valor = Number(valor);
+    }
+}
+
+let arrayFacturas = []
+
+function AgregarFacturas() {
+    console.log()
+    ingresar = Number(prompt(`¿Cuantas facturas desea ingresar?`));
 
     for (let i = 1; i <= ingresar; i++){
-    const nombre = prompt(`Ingrese nombre o si desea salir escriba "salir`);
-    
-    if(nombre == salir){
-        alert(`Gracias por su servicio`);
-        break 
-    }
-    valor = Number(prompt(`Ingrese el valor de cada factura`));
-    console.log(`Nº Factura ${i}:\n${nombre} con valor a pagar de $${valor}`);
+        const nombre = prompt(`Ingrese nombre o si desea salir escriba "salir`);
+        if(nombre == salir){
+            alert(`Gracias por su servicio`);
+            break 
+        }
+        let valor = prompt(`Ingrese el valor de cada factura`);
+        console.log(`Nº Factura ${i}:\n${nombre} con valor a pagar de $${valor}`);
 
-        total += valor
-    }
-
-    console.log(`\nHay un total de ${ingresar} facturas ingresadas`)
-    parseFloat(console.log(`El total de las facturas son: ${total}`));
-
-    promedio =  cpromedio(total, ingresar)
-    function cpromedio(valor, ingrese){
-        parseFloat(console.log(`El promedio es: $${valor/ingrese}`));
-        return valor/ingrese
+        let nuevaFactura = new Facturas(nombre, valor);
+        arrayFacturas.push(nuevaFactura);
     }
     
-/*    confirm(`¿Desea ver cuantas facturas superan los $1000?`)
-        for(let i = 1; i < 1000; i++){
-            if(valor < 1000){
-                let num = valor
-                console.log(`Hay un total de ${i} facturas mayores a $1000`);
-            }
-        }*/
+}
+AgregarFacturas()
 
+console.log(`\nHay un total de ${ingresar} facturas ingresadas`);
 
+function total(lista){
+    return valor = lista.reduce((i, item) => i + item.valor, 0);
+}
+console.log(`Precio final: ${total(arrayFacturas)}`);
+
+function promedio(lista){
+    return valor = total(lista)/lista.length ;
+}
+console.log(`El promedio es: ${promedio(arrayFacturas)}`);
+
+arrayFacturas.filter(factura => factura.valor > 1000);
+const lista1 = arrayFacturas.filter(factura => factura.valor > 1000);
+lista1.forEach(element => {
+    console.log(`${element.nombre}, ${element.valor}`);
+});
+
+// arrayFacturas.sort((a, b) => a - b);
+// arrayFacturas.forEach(element => {
+//     console.log(`${element.nombre}, ${element.valor}`);
+// });
