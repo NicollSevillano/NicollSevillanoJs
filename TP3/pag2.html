@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nicoll Sevillano</title>
+    <link rel="shortcut icon" href="./img/n.png" type="image/x-icon">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+</head>
+<body id="pag2">
+    <div class="contenedor-fluid">
+        <header class="header">
+            <nav class="navbar bg-light">
+                <div class="container-fluid">
+                    <a class="navb navbar-brand">TP3 para CoderHouse</a>
+                </div>
+            </nav>
+        </header>
+        <main class="main2">
+            <div>
+                Texto a buscar <input id="buscar" type="text" onkeyup="busqueda()" />
+                <form action="" class="formFacturas">
+                    <div class="form2">
+                        <label for="serv" id="Servicio" class="servicio">¿Qué servicio desea pagar?</label>
+                        <input type="text" name="texto" id="input1" class="input">
+                    </div>
+                    <div class="form2">
+                        <label for="ingValor" id="ingresarValor" class="valor">Ingrese el valor de la factura</label>
+                        <input type="text" id="input2" class="input">
+                    </div>
+                    <button id="boton1" class="boton1">Agregar</button>
+                    <button id="boton2" class="boton2">Total</button>
+                </form>
+            </div>
+            <div id="body" class="body">
+                <tr class="nobusqueda"></tr>
+            </div>
+
+        </main>
+        <footer class="footer">
+            <div class="foot">
+                <h3>Nicoll Sevillano Portocarrero</h3>
+            </div>
+            <div class="foot">
+                <p>Tutor: Gaston Da Ruda</p>
+            </div>
+        </footer>
+    </div>
+</body>
+<script src="../TP3/script.js"></script>
+</html>
