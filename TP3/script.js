@@ -1,140 +1,119 @@
-
-// function ingresar(){
-//     window.location.href ="pag2.html";
-// }
-// let ingre = document.getElementById("ingresar");
-// ingre.addEventListener("click",ingresar);
-
-//Creación de tabla
-let table = document.createElement("table");
-let tBody = document.createElement("tbody");
-let tHeader = document.createElement("thead");
-let tfooter = document.createElement("tfoot");
-table.appendChild(tHeader);
-table.appendChild(tBody);
-table.appendChild(tfooter);
-document.getElementById("body").appendChild(table);
-
-//Agregar columnas (headers: Nº, Servicio, IVA, Total)
-let fila1 = document.createElement("tr");
-let col1 = document.createElement("th");
-col1.innerHTML = "Nº";
-let col2 = document.createElement("th");
-col2.innerText = "Servicio";
-let col3 = document.createElement("th");
-col3.innerHTML = "IVA";
-let col4 = document.createElement("th");
-col4.innerHTML = "Total";
-fila1.appendChild(col1);
-fila1.appendChild(col2);
-fila1.appendChild(col3);
-fila1.appendChild(col4);
-tHeader.appendChild(fila1);
-
-//Agregar datos
-class Factura{
-    constructor(numero, servicio, iva, total){
-        this.numero = numero;
-        this.servicio = servicio;
-        this.iva = iva;
-        this.total = parseFloat(total);
-    }
-}
-const array = [];
-const array2 = JSON.stringify("Factura")
-function Refrescar(){
-    if(tBody.childElementCount>0){
-        tBody.innerHTML = "";
-    }
-    array.forEach(x => {
-        let fila = document.createElement("tr");
-        let cola = document.createElement("td");
-        let colb = document.createElement("td");
-        let colc = document.createElement("td");
-        let cold = document.createElement("td");
-        cola.innerHTML = `${x.numero}`;
-        colb.innerHTML = `${x.servicio}`;
-        colc.innerHTML = `${x.iva}`;
-        cold.innerHTML = `${x.total}`;
-        fila.appendChild(cola);
-        fila.appendChild(colb);
-        fila.appendChild(colc);
-        fila.appendChild(cold);
-        tBody.appendChild(fila);
-    });
-}
+//DOM
 let boton1 = document.getElementById("boton1");
-let boton2 = document.getElementById("boton2");
 let input1 = document.getElementById("input1");
 let input2 = document.getElementById("input2");
+let boton2 = document.getElementById("boton2");
+
+//Eventos
 boton1.addEventListener("click", (e) => {
     e.preventDefault();
     let var1 = input1.value;
     let var2 = input2.value;
-    array.push(new Factura(``, `${var1}`, `${(var2*21)/100}` , `${((var2*21)/100)+parseFloat(var2)}`));
-    Refrescar();
-    localStorage.setItem("Facturas", JSON.stringify(array));
+    if(ArrayFacturas.length == 0){
+        ArrayFacturas.push(new Factura("1", `${var1}`, (var2*21)/100, `${((var2*21)/100)+parseFloat(var2)}`));
+    }
+    else{
+        ArrayFacturas.push(new Factura(parseInt(ArrayFacturas[ArrayFacturas.length-1].numero) + 1, `${var1}`, (var2*21)/100, `${((var2*21)/100)+parseFloat(var2)}`));
+    }
+    TableRender(ArrayFacturas);
+      //Local storage
+    localStorage.setItem(ArrayFacturas);
 })
 
-boton2.addEventListener("click", Agregar);
+//Local storage
+// boton2.addEventListener("click", BorrarLS);
+// function BorrarLS(){
+    // if(array2 != null){
+    //     array.forEach(item => {
+    //         array.pop();
+    //     })
+    //         localStorage.clear();
+    //         tBody.innerHTML = "";
+    //         tFooter.innerHTML = "";
+    // }    
+    // console.log(JSON.parse(localStorage.getItem("Facturas")));
+//       localStorage.clear();
+//       TableRender(ArrayFacturas);    
+// }
+
 function calcularPrecioTotal(lista){
     return valor = lista.reduce((valor, item) => valor + item.total, 0);
 }
-function Agregar(e){
-    e.preventDefault();
-    tfooter.innerHTML = "";
-    let fila = document.createElement("tr");
-    let cola = document.createElement("td");
-    let colb = document.createElement("td");   
-    let colc = document.createElement("td");
-    let cold = document.createElement("td");    
-    cola.innerHTML = ``;
-    colb.innerHTML = ``;
-    colc.innerHTML = `Total`;
-    cold.innerHTML = `${calcularPrecioTotal(array)}`;
-    fila.appendChild(cola);
-    fila.appendChild(colb);
-    fila.appendChild(colc);
-    fila.appendChild(cold);
-    tfooter.appendChild(fila);
-}
-// function busqueda(){
-//     const tableReg = document.getElementById('tabla');
-//     const searchText = document.getElementById("buscar").value.toLowerCase();
-//     let total = 0;
-//     for(let i = 1; i < table.rows.length; i++){
-//         if(table.rows[i].classList.contains("nobusqueda")){
-//             continue;
-//         }
-//         let buscar = false;
-//         const celda = table.rows[i].getElementsByTagName("td");
-//         for(let j = 0; i < celda.length && !buscar; j++){
-//             const comparar = celda[j].innerHTML.toLowerCase();
-//             if(searchText.length == 0 || comparar.indexOf(searchText) > -1){
-//                 buscar = true;
-//                 total++
-//             }
-//         }
-//         if(buscar){
-//             tableReg.rows[i].style.display = '';
-//         }
-//         else{
-//             tableReg.rows[i].style.display = 'none';
-//         }
-//     }
-//     const lastTR = searchText.rows[searchText.rows.length - 1];
-//     const td = lastTR.querySelector("td");
 
-// 
-// boton2.addEventListener("click", BorrarLS);
-// function BorrarLS(){
-//     if(array2 != null){
-//         array.forEach(item => {
-//             array.pop();
-//         })
-//             localStorage.clear();
-//     }    
-//     console.log(JSON.parse(localStorage.getItem("Facturas")));
-//     Refrescar();     
-// }
-// Refrescar();
+class Factura{
+    constructor(numero, servicio, iva, total){
+        this.numero = numero;
+        this.servicio = servicio;
+        this.iva = parseFloat(iva);
+        this.total = parseFloat(total);
+    }
+}
+
+let table2 = document.createElement("table");
+let tBody2 = document.createElement("tbody");
+function TableRender(array){
+    table2.innerHTML = 
+    `<th>Numero</th><th>Servicio</th><th>IVA</th><th>Total</th><th></th><th>Total Final</th>`                
+    tBody2.innerHTML = array.map(factura =>
+        `<tr>
+            <td>${factura.numero}</td>
+            <td>${factura.servicio}</td>
+            <td>${factura.iva}</td>
+            <td>${factura.total}</td>
+            <td><button onclick="Borrar(${factura.numero})">Eliminar</button></td>
+        </tr>`
+    ).join("");
+    tBody2.innerHTML += 
+    `<tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>${calcularPrecioTotal(ArrayFacturas)}</td>
+    </tr>`
+    document.getElementById("body").appendChild(table2);
+    table2.appendChild(tBody2);
+    table2.style.margin ="auto auto";
+    table2.style.gap ="10px";
+}
+let ArrayFacturas = [];
+function Agregar(factura){
+    ArrayFacturas.push(factura);
+    TableRender(ArrayFacturas);
+}
+function Borrar(numero){
+    if(ArrayFacturas.length > 1){    
+        ArrayFacturas[0].numero==numero?ArrayFacturas.shift():ArrayFacturas = ArrayFacturas.filter(factura => factura.numero !== numero);
+    }
+    else{
+        if(ArrayFacturas[0].numero==numero){
+            ArrayFacturas.pop();
+        }
+    }
+    TableRender(ArrayFacturas);
+}
+TableRender(ArrayFacturas);
+
+let table3 = document.createElement("table");
+let tBody3 = document.createElement("tbody");
+fetch('../TP3/sucursales.json')
+    .then (Response => Response.json())
+    .then (sucursales => {
+        table3.innerHTML = 
+            `<th>Nombre</th><th>Sucursal</th><th>Telefono</th>`     
+            sucursales.map(sucursal => {
+                tBody3.innerHTML += 
+                `<tr>
+                    <td>${sucursal.nombre}</td>
+                    <td>${sucursal.sucursal}</td>
+                    <td>${sucursal.nroTelefono}</td>      
+                </tr>`;
+    })                 
+        document.getElementById("foot").appendChild(table3);
+        table3.appendChild(tBody3);
+        table3.style.marginLeft = "auto";
+        table3.style.marginRight = "auto";
+        table3.style.border =  "1px solid #000";
+        tBody3.style.border = "1px solid #000";
+})

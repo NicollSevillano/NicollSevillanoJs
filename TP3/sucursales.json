@@ -1,0 +1,14 @@
+[
+    { "nombre": "Cablevisión", "sucursal": "Capital - Barrio Norte", "nroTelefono": "1123456789" },
+    { "nombre": "Personal", "sucursal": "Capital - San Telmo", "nroTelefono": "1132547698" },
+    { "nombre": "Movistar", "sucursal": "Capital - Barracas", "nroTelefono": "1143658709" },
+    { "nombre": "Claro", "sucursal": "Capital - Once", "nroTelefono": "1132433265" },
+    { "nombre": "Edesur", "sucursal": "Capital - Palermo", "nroTelefono": "45334323" },
+    { "nombre": "Edenor", "sucursal": "Capital - Agronomia", "nroTelefono": "44532312" },
+    { "nombre": "Telecom", "sucursal": "Capital - Palermo Soho", "nroTelefono": "1123121245"},
+    { "nombre": "Metrogas", "sucursal": "Capital - Devoto", "nroTelefono": "45231222"},
+    { "nombre": "OSDE", "sucursal": "Capital - Recoleta", "nroTelefono": "08005556733"},
+    { "nombre": "Accord", "sucursal": "Capital - Belgrano", "nroTelefono": "08003337110"},
+    { "nombre": "Swiss Medical", "sucursal": "Capital - Puerto Madero", "nroTelefono": "08103332244"},
+    { "nombre": "Cablevisión - Flow", "sucursal": "Capital - Barrio Norte", "nroTelefono": "0800 555 0104"}
+]
